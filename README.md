@@ -117,6 +117,58 @@ CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS        
 C:\Users\arijh>docker rm mon_nginx
 mon_nginx
 
-C:\Users\arijh>docker ps -a
-CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 
+##Exercice 5:
+
+$ docker build -t tp1-app .
+[+] Building 55.9s (10/10) FINISHED                          docker:desktop-linux
+ => [internal] load build definition from Dockerfile                         0.0s
+ => => transferring dockerfile: 200B                                         0.0s
+ => [internal] load metadata for docker.io/library/python:3.13               1.4s
+ => [internal] load .dockerignore                                            0.0s
+ => => transferring context: 2B                                              0.0s
+ => [1/5] FROM docker.io/library/python:3.13@sha256:6faba2c56370992b0456e1  50.1s
+ => => resolve docker.io/library/python:3.13@sha256:6faba2c56370992b0456e11  0.0s
+ => => sha256:7af818fe6364cc23e3187871665225f2ed1ffd6f965d90898 250B / 250B  0.1s
+ => => sha256:c5b14f510815b7cd08ec1fcfa5a5222e352011816f1 27.66MB / 27.66MB  7.5s
+ => => sha256:1599fa592074badc651117d15e0d7cc070b21d3dd9b65 6.09MB / 6.09MB  7.4s
+ => => sha256:44fed46b68cf907ddf6afb6bc4211842f016a087 236.34MB / 236.34MB  44.5s
+ => => sha256:cbc19164244e861d91ebd80a17e2c78c5be43a8059 67.80MB / 67.80MB  28.1s
+ => => sha256:00f78834a2fef03250be89a7741ff39d0e6bbd86029 25.64MB / 25.64MB  7.0s
+ => => sha256:27ee9a8250487842a26b1ffa1215982ba9ae27010b 49.34MB / 49.34MB  13.5s
+ => => extracting sha256:27ee9a8250487842a26b1ffa1215982ba9ae27010bce1997d5  1.2s
+ => => extracting sha256:00f78834a2fef03250be89a7741ff39d0e6bbd860298ea129a  0.5s
+ => => extracting sha256:cbc19164244e861d91ebd80a17e2c78c5be43a8059a32ab6fc  1.7s
+ => => extracting sha256:44fed46b68cf907ddf6afb6bc4211842f016a0876b02fc2791  4.5s
+ => => extracting sha256:1599fa592074badc651117d15e0d7cc070b21d3dd9b658d5a3  0.4s
+ => => extracting sha256:c5b14f510815b7cd08ec1fcfa5a5222e352011816f10ad254e  0.5s
+ => => extracting sha256:7af818fe6364cc23e3187871665225f2ed1ffd6f965d908985  0.0s
+ => [internal] load build context                                            0.0s
+ => => transferring context: 78B                                             0.0s
+ => [2/5] WORKDIR /TP1                                                       0.3s
+ => [3/5] COPY requirements.txt .                                            0.0s
+ => [4/5] RUN pip install --no-cache-dir -r requirements.txt                 3.0s
+ => [5/5] COPY app.py .                                                      0.0s
+ => exporting to image                                                       0.9s
+ => => exporting layers                                                      0.6s
+ => => exporting manifest sha256:bbc67911c2fd48afcab02081441020fe36b9327bc0  0.0s
+ => => exporting config sha256:0398f27d44f5320e3ef066ccaabdbe544052072a7f47  0.0s
+ => => exporting attestation manifest sha256:0a07f6e1545950177c5976009c4020  0.0s
+ => => exporting manifest list sha256:dae28ed4b63d2d8b806d4baf64a1841027e03  0.0s
+ => => naming to docker.io/library/tp1-app:latest                            0.0s
+ => => unpacking to docker.io/library/tp1-app:latest                         0.2s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/jzc040891wvm52xumpliffuch
+
+$ docker images
+                                                              i Info →   U  In Use
+IMAGE            ID             DISK USAGE   CONTENT SIZE   EXTRA
+nginx:latest     05b8cb60c354        253MB         69.2MB        
+tp1-app:latest   dae28ed4b63d       1.62GB          418MB        
+
+$ docker run -d -p 8080:8080 --name tp1-container tp1-app
+c782481dac82ec84d813a0b0b3d5a666f44cce864e77194f9a6391b0556feef0
+
+$ docker ps
+CONTAINER ID   IMAGE     COMMAND           CREATED          STATUS          PORTS                                         NAMES
+c782481dac82   tp1-app   "python app.py"   36 seconds ago   Up 35 seconds   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp   tp1-container
