@@ -172,3 +172,5 @@ c782481dac82ec84d813a0b0b3d5a666f44cce864e77194f9a6391b0556feef0
 $ docker ps
 CONTAINER ID   IMAGE     COMMAND           CREATED          STATUS          PORTS                                         NAMES
 c782481dac82   tp1-app   "python app.py"   36 seconds ago   Up 35 seconds   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp   tp1-container
+
+>pour tester sur le navigateur: http://localhost:8080/
