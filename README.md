@@ -174,3 +174,16 @@ CONTAINER ID   IMAGE     COMMAND           CREATED          STATUS          PORT
 c782481dac82   tp1-app   "python app.py"   36 seconds ago   Up 35 seconds   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp   tp1-container
 
 >pour tester sur le navigateur: http://localhost:8080/
+
+
+## Exercice 6:
+
+$ docker compose up --build
+$ docker compose logs app
+app-1  | Connexion à MongoDB réussie !
+app-1  |  * Serving Flask app 'app'
+app-1  |  * Debug mode: off
+app-1  | WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+app-1  |  * Running on all addresses (0.0.0.0)
+app-1  |  * Running on http://127.0.0.1:8080
+app-1  |  * Running on http://172.18.0.2:8080
